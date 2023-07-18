@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Source</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Department</th>
+            <th scope="col">Business Process</th>
+            <th scope="col">Technology</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if interface_list %}
+        {% for interface in interface_list %}
+            <tr>
+                <td><a href="{% url 'interface_detail' interface.id %}/">{{ interface.id }}</a></td>
+                <td>{{ interface.source.name }}</td>
+                <td>{{ interface.destination.name }}</td>
+                <td>{{ interface.business_process.get_department_display }}</td>
+                <td>{{ interface.business_process.name }}</td>
+                <td>{{ interface.get_technology_display }}</td>
+            </tr>
+        {% endfor %}
+
+        {% endif %}
+    </tbody>
+
+</table>
+
+{% endblock %}

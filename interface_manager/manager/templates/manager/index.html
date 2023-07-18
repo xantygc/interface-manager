@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Production date</th>
+            <th scope="col">Deprecation date</th>
+            <th scope="col">Is monitoring ?</th>
+            <th scope="col">Is alarmed ?</th>
+            <th scope="col">endpoints</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if system_list %}
+        {% for system in system_list %}
+            <tr>
+                <td><a href="{% url 'system_detail' system.id %}/">{{ system.name }}</a></td>
+                <td>{{ system.production_ready }}</td>
+                <td>{{ system.deprecation_date }}</td>
+                <td>{{ system.is_monitoring }}</td>
+                <td>{{ system.is_alarmed }}</td>
+                <td>
+                    {% for endpoint in system.endpoints.all %}
+                        <a href="{% url 'endpoint_detail' endpoint.id %}/">{{ endpoint.name }}</a>,
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+
+        {% endif %}
+    </tbody>
+
+</table>
+
+{% endblock %}
