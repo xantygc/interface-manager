@@ -1,0 +1,62 @@
+:root{
+    --axpo-color-red-100: #E10019;
+    --axpo-color-red-80: #E73347;
+    --axpo-color-red-60: #ED6675;
+    --axpo-color-red-40: #F399A3;
+    --axpo-color-red-20: #F9CCD1;
+    --axpo-color-dark-red-100: #761613;
+    --axpo-color-dark-red-80: #9F4550;
+    --axpo-color-dark-red-60: #B7737C;
+    --axpo-color-dark-red-40: #CFA2A7;
+    --axpo-color-dark-red-20: #E7D0D3;
+    --axpo-color-light-red-100: #FACDB8;
+    --axpo-color-light-red-80: #FBD7C6;
+    --axpo-color-light-red-60: #FCE1D4;
+    --axpo-color-light-red-40: #FDEBE3;
+    --axpo-color-light-red-20: #FEF5F1;
+    --axpo-color-warm-gray-100: #D8CCC8;
+    --axpo-color-warm-gray-80: #E0D6D3;
+    --axpo-color-warm-gray-60: #E8E0DE;
+    --axpo-color-warm-gray-40: #EFEBE9;
+    --axpo-color-warm-gray-20: #F7F5F4;
+    --axpo-color-aubergine-100: #5E4A4D;
+    --axpo-color-aubergine-80: #7E6E71;
+    --axpo-color-aubergine-60: #9E9294;
+    --axpo-color-aubergine-40: #BFB7B8;
+    --axpo-color-aubergine-20: #DFDBDB;
+    --axpo-color-coral-red: #FF5D64;
+    --axpo-color-coral-red-dark: #F2354D;
+    --axpo-color-primary-red: #FF5D64;
+    --axpo-color-primary-red-dark: #F2354D;
+    --axpo-color-primary-red-light: #f89aa6;
+    --axpo-color-horizon-blue: #4545CF;
+    --axpo-color-horizon-blue-medium: #a2a2e7;
+    --axpo-color-horizon-blue-light: #dadaf5;
+    --axpo-color-aqua-green: #00ECD1;
+    --axpo-color-aqua-green-light: #aaf9f0;
+    --axpo-color-solar-yellow: #FFED57;
+    --axpo-color-solor-yellow-light: #ffedb3;
+    --axpo-color-dark-gray: #3D3D3D;
+    --axpo-color-light-gray: #d8d8d8;
+    --axpo-color-red-interactions: #f2354d;
+    --axpo-color-red-error: #b00020;
+    --axpo-color-disabled: #ecdcdd;
+    --axpo-color-green-success: #00a486;
+    --axpo-color-total-white: #FFFFFF;
+    --axpo-color-black-100: hsl(0, 0%, 0%);
+    --axpo-color-black-80: hsl(0, 0%, 20%);
+    --axpo-color-black-60: hsl(0, 0%, 40%);
+    --axpo-color-black-40: hsl(0, 0%, 60%);
+    --axpo-color-black-20: hsl(0, 0%, 80%);
+    --axpo-color-black-10: hsl(0, 0%, 90%);
+
+}
+.shadow-below {
+    --tw-shadow: 0 0 10px rgba(0, 0, 0, 0.3) !important;
+    --tw-shadow-colored: 0 0 10px var(--tw-shadow-color) !important;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+}
+
+.text-axpo-red {
+    color: var(--axpo-color-red-100) !important;
+}
