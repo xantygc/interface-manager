@@ -4,8 +4,8 @@ from .models import Interface, System, BusinessProcess
 
 
 class SystemAdmin(admin.ModelAdmin):
-    fields = ["name", "responsible", "technology", "is_monitoring", "monitoring URL", "is_alarmed", "is_external", "production_ready", "deprecation_date"]
-    list_display = ["name", "responsible", "technology", "production_ready"]
+    fields = ["name", "business_owner", "it_owner", "technology", "is_monitoring", "monitoring URL", "is_alarmed", "is_external", "production_ready", "deprecation_date"]
+    list_display = ["name", "business_owner", "it_owner", "technology", "production_ready"]
 
 class InterfaceAdmin(admin.ModelAdmin):
     list_display = ["get_business_process_dpto", "get_business_process_name", "get_source_name", "get_destination_name"]

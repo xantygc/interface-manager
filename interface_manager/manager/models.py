@@ -5,7 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 class System(models.Model):
     name = models.CharField(name='name', max_length=100)
-    responsible = models.CharField(max_length=200)
+    business_owner = models.CharField(name='business_owner', max_length=200, blank=True, null=True)
+    it_owner = models.CharField(name='it_owner', max_length=200, blank=True, null=True)
     technology = models.CharField(name='technology', max_length=150, blank=True, null=True)
     monitoring = models.BooleanField(name='is_monitoring', default=False)
     monitoring_url = models.URLField(name='monitoring URL', null=True, blank=True, default=None)
