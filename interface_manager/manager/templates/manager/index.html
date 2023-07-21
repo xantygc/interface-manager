@@ -17,14 +17,14 @@
         {% if system_list %}
         {% for system in system_list %}
             <tr>
-                <td><a href="{% url 'system_detail' system.id %}/">{{ system.name }}</a></td>
+                <td><a class="text-axpo-red" href="{% url 'system_detail' system.id %}/">{{ system.name }}</a></td>
                 <td>{{ system.production_ready }}</td>
                 <td>{{ system.deprecation_date }}</td>
                 <td>{{ system.is_monitoring }}</td>
                 <td>{{ system.is_alarmed }}</td>
                 <td>
                     {% for endpoint in system.endpoints.all %}
-                        <a href="{% url 'endpoint_detail' endpoint.id %}/">{{ endpoint.name }}</a>,
+                        <a class="text-axpo-red" href="{% url 'endpoint_detail' endpoint.id %}/">{{ endpoint.name }}</a>,
                     {% endfor %}
                 </td>
             </tr>
