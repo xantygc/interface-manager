@@ -6,6 +6,9 @@ from django.utils.translation import gettext_lazy as _
 class System(models.Model):
     name = models.CharField(name='name', max_length=100)
     technology = models.CharField(name='technology', max_length=150, blank=True, null=True)
+    infra_monitoring = models.BooleanField(name='infrastructure_monitoring', default=False)
+    app_monitoring = models.BooleanField(name='app_monitoring', default=False)
+    business_monitoring = models.BooleanField(name='business_monitoring', default=False)
     monitoring = models.BooleanField(name='is_monitoring', default=False)
     monitoring_url = models.URLField(name='monitoring URL', null=True, blank=True, default=None)
     alarms = models.BooleanField(name='is_alarmed', default=False)
