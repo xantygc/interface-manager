@@ -1,7 +1,7 @@
 from django.http import FileResponse, HttpResponse
 from django.shortcuts import render
 from .models import System, Interface, BusinessProcess
-
+from .diagram import do_something
 def index(request):
 	existing_systems_list = System.objects.all()
 	context = {"system_list": existing_systems_list}
@@ -30,5 +30,6 @@ def endpoint_detail(request):
 	return render(request, "manager/endpoint/detail.html",context)
 
 def diagram_view(request, id):
-
-	return None
+	context = {}
+	do_something(id)
+	return render(request, "manager/interface.html", context)
