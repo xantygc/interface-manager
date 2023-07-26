@@ -35,9 +35,9 @@ def endpoint_detail(request):
 def diagram_view(request, id):
 
 	area = str(BusinessProcess.Unit.choices[int(id)][1])
-
+	interfaces_area = Interface.objects.all()
 	filename = NamedTemporaryFile(dir="./").name
-	create_diagram(filename, area=area)
+	create_diagram(filename, area=area, interfaces=interfaces_area)
 
 	with open(filename + ".png", "rb") as f:
 		diagram_data = f.read()

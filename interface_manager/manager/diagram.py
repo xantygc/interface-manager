@@ -1,14 +1,13 @@
 from diagrams import Diagram
 from diagrams.c4 import Person, Container, System, Relationship
 from tempfile import NamedTemporaryFile
-def create_diagram(filename, area="Ejemplo de Diagrama C4"):
+def create_diagram(filename, area="Ejemplo de Diagrama C4", interfaces={}, applications={}):
+
     with Diagram(area, filename=filename, show=False):
-        customer = Person("Cliente", "Un cliente del banco")
-        webapp = Container("Aplicación Web", "Java/Spring")
-        database = Container("Base de Datos", "Oracle")
-
-        customer >> Relationship("Utiliza") >> webapp >> Relationship("Utiliza") >> database
-
+        for i in interfaces:
+            origin = System(str(i.source), "Un cliente del banco")
+            destination = System(str(i.destination), "destination system")
+            origin >> Relationship(i.description) >> destination
 
 
 if __name__ == "__main__":
