@@ -11,6 +11,7 @@
             <th scope="col">Department</th>
             <th scope="col">Business Process</th>
             <th scope="col">Technology</th>
+            <th scope="col">Endpoint</th>
         </tr>
     </thead>
     <tbody>
@@ -22,7 +23,8 @@
                 <td>{{ interface.destination.name }}</td>
                 <td><a class="text-axpo-red" target="_blank" href="{% url 'diagram_area' interface.business_process.business_area.id %}">{{ interface.business_process.business_area }}</a></td>
                 <td>{{ interface.business_process.name }}</td>
-                <td>{{ interface.get_technology_display }}</td>
+                <td>{{ interface.technology }}</td>
+                <td><a class="text-axpo-red" target="_blank" href="{{ interface.endpoint }}"><{{ interface.endpoint }}</a></td>
             </tr>
         {% endfor %}
 
