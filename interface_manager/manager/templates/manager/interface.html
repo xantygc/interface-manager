@@ -20,7 +20,7 @@
                 <td><a class="text-axpo-red" href="{% url 'interface_detail' interface.id %}/">{{ interface.id }}</a></td>
                 <td>{{ interface.source.name }}</td>
                 <td>{{ interface.destination.name }}</td>
-                <td><a class="text-axpo-red" target="_blank" href="{% url 'diagram' interface.business_process.department %}">{{ interface.business_process.get_department_display }}</a></td>
+                <td><a class="text-axpo-red" target="_blank" href="{% url 'diagram_area' interface.business_process.business_area.id %}">{{ interface.business_process.business_area }}</a></td>
                 <td>{{ interface.business_process.name }}</td>
                 <td>{{ interface.get_technology_display }}</td>
             </tr>

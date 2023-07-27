@@ -2,9 +2,16 @@ import django
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+class Department(models.Model):
+    name = models.CharField(max_length=50)
+    it_owner = models.EmailField(null=True, blank=True)
+    def __str__(self):
+        return self.name
+
 
 class System(models.Model):
-    name = models.CharField(name='name', max_length=100)
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=400, null=True)
     technology = models.CharField(name='technology', max_length=150, blank=True, null=True)
     infra_monitoring = models.BooleanField(name='infrastructure_monitoring', default=False)
     app_monitoring = models.BooleanField(name='app_monitoring', default=False)
@@ -22,17 +29,11 @@ class System(models.Model):
 
 
 class BusinessProcess(models.Model):
-    class Unit(models.IntegerChoices):
-        COME_ES = 0, _('COME ES')
-        COME_PT = 1, _('COME PT')
-        GAS_TOP = 2, _('GAS TOP')
-        AGENTE_VENDEDOR = 3, _('AGENTE_VENDEDOR')
-
-    unit = models.IntegerField(name='department', default=None, choices=Unit.choices)
     process = models.CharField(name='name', max_length=100)
+    business_area = models.ForeignKey(Department, name='business_area', null=True, on_delete=models.PROTECT)
 
     def __str__(self):
-        return self.get_department_display() + ' - ' + self.name
+        return str(self.business_area)    + ' - ' + self.name
 
 class Interface(models.Model):
     class Technology(models.IntegerChoices):

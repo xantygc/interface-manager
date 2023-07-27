@@ -1,23 +1,29 @@
 from diagrams import Diagram
-from diagrams.c4 import Person, Container, System, Relationship
+from diagrams.c4 import System, Relationship
 from tempfile import NamedTemporaryFile
-def create_diagram(filename, area="Ejemplo de Diagrama C4", interfaces={}, applications={}):
+def create_diagram(filename, interfaces=None):
+    if interfaces is None:
+        interfaces = {}
     existing_elements = {}
 
+    graph_attr = {
+        "fontsize": "45",
+        "bgcolor": "transparent"
+    }
 
-    with Diagram(area, filename=filename, show=False):
+    with Diagram(filename=filename, show=False, graph_attr=graph_attr):
         for i in interfaces:
             source_name = str(i.source)
             destination_name = str(i.destination)
 
             if source_name not in existing_elements:
-                origin = System(source_name, "Un cliente del banco")
+                origin = System(name=source_name, description=str(i.source.description), external=i.source.is_external)
                 existing_elements[source_name]=origin
             else:
                 origin = existing_elements[source_name]
 
             if destination_name not in existing_elements:
-                destination = System(destination_name, "Un cliente del banco")
+                destination = System(name=destination_name, description=str(i.destination.description), external=i.destination.is_external)
                 existing_elements[destination_name] = destination
             else:
                 destination = existing_elements[destination_name]

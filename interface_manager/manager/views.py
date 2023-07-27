@@ -1,9 +1,11 @@
+import os
 from tempfile import NamedTemporaryFile
 
 from diagrams import Diagram
+from django.db.models import Q
 from django.http import FileResponse, HttpResponse
 from django.shortcuts import render
-from .models import System, Interface, BusinessProcess
+from .models import System, Interface, Department
 from .diagram import create_diagram
 def index(request):
 	existing_systems_list = System.objects.all()
@@ -32,14 +34,34 @@ def endpoint_detail(request):
 	context = {}
 	return render(request, "manager/endpoint/detail.html",context)
 
-def diagram_view(request, id):
-
-	area = str(BusinessProcess.Unit.choices[int(id)][1])
-	interfaces_area = Interface.objects.all()
+def diagram_business_area(request, id):
+	area = Department.objects.get(id=id)
+	interfaces_area = Interface.objects.filter(business_process__business_area__id=id)
 	filename = NamedTemporaryFile(dir="./").name
-	create_diagram(filename, area=area, interfaces=interfaces_area)
-
+	create_diagram(filename, interfaces=interfaces_area)
 	with open(filename + ".png", "rb") as f:
 		diagram_data = f.read()
 
 	return HttpResponse(diagram_data, content_type="image/png")
+
+def diagram_system(request, id):
+	system = System.objects.get(id=id)
+	interfaces = Interface.objects.filter(Q(source=system) | Q(destination=system))
+
+	filename = NamedTemporaryFile(dir="./").name
+	create_diagram(filename, interfaces=interfaces)
+	with open(filename + ".png", "rb") as f:
+		diagram_data = f.read()
+	return HttpResponse(diagram_data, content_type="image/png")
+
+
+def delete_file(filename):
+	if os.path.exists(filename):
+		# Intentamos eliminar el archivo
+		try:
+			os.remove(filename)
+			print("Archivo borrado exitosamente.")
+		except OSError as e:
+			print(f"No se pudo borrar el archivo: {e}")
+	else:
+		print("El archivo no existe.")
