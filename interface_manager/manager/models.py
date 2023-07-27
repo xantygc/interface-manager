@@ -2,9 +2,18 @@ import django
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+
+class Technology(models.Model):
+    name = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.name
+
+
 class Department(models.Model):
     name = models.CharField(max_length=50)
     it_owner = models.EmailField(null=True, blank=True)
+
     def __str__(self):
         return self.name
 
@@ -31,22 +40,18 @@ class System(models.Model):
 class BusinessProcess(models.Model):
     process = models.CharField(name='name', max_length=100)
     business_area = models.ForeignKey(Department, name='business_area', null=True, on_delete=models.PROTECT)
+    process_url = models.URLField(name="url", null=True, blank=True)
 
     def __str__(self):
-        return str(self.business_area)    + ' - ' + self.name
+        return str(self.business_area) + ' - ' + self.name
+
 
 class Interface(models.Model):
-    class Technology(models.IntegerChoices):
-        WSDL = 0, _('Wsdl')
-        REST_API = 1, _('Rest API')
-        SFTP = 2, _('sFTP')
-        FTP = 3, _('FTP')
-        ESB = 4, _('ESB Integration')
-
     process = models.ForeignKey(BusinessProcess, on_delete=models.DO_NOTHING, name="business_process")
     source = models.ForeignKey(System, on_delete=models.DO_NOTHING, name="source", related_name="source")
     destination = models.ForeignKey(System, on_delete=models.DO_NOTHING, name="destination", related_name="destination")
-    technology = models.IntegerField(default=None, choices=Technology.choices)
+    endpoint = models.URLField(null=True, blank=True)
+    technology = models.ForeignKey(Technology, on_delete=models.PROTECT, null=True, blank=True)
     description = models.CharField(max_length=50, null=True, blank=True, name="description")
     alarms = models.BooleanField(name='is_alarmed', default=False)
     monitoring = models.BooleanField(name='is_monitoring', default=False)
